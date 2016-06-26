@@ -2,6 +2,8 @@
 
 Aggregate log records by time.
 
+[![Build Status](https://travis-ci.org/winebarrel/agg.svg?branch=master)](https://travis-ci.org/winebarrel/agg)
+
 ## Usage
 
 ```

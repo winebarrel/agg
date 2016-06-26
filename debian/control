@@ -1,0 +1,14 @@
+Source: agg
+Section: utils
+Priority: optional
+Maintainer: Genki Sugawara <sgwr_dts@yahoo.co.jp>
+Build-Depends: debhelper (>= 8.0.0)
+Standards-Version: 3.9.4
+Homepage: https://github.com/winebarrel/agg
+#Vcs-Git: git://git.debian.org/collab-maint/agg.git
+#Vcs-Browser: http://git.debian.org/?p=collab-maint/agg.git;a=summary
+
+Package: agg
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Aggregate log records by time.

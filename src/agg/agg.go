@@ -18,6 +18,7 @@ const (
 
 type Agg struct {
 	Type    AggregateType
+	TrimLen int
 	Out     io.Writer
 	Curr    string
 	Counter map[string]int

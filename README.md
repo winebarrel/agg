@@ -8,6 +8,8 @@ Aggregate log records by time.
 
 ```
 Usage of agg:
+  -s int
+      Trim timestamp suffix length
   -t string
       count,sum,avg,max,min (default "count")
 ```
@@ -27,8 +29,8 @@ $ awk '{print $1, $2}' access.log | agg
 12:11 BAR:2 FOO:1
 12:12 ZOO:1
 
-$ awk '{sub(/[0-9]$/, "0", $1); print $1, $2}' access.log | agg
-12:10 BAR:3 FOO:3 ZOO:1
+$ awk '{print $1, $2}' access.log | agg -s 1
+12:1  BAR:3 FOO:3 ZOO:1
 
 $ awk '{print $1, $3}' access.log | agg -t sum
 12:10 600.000000

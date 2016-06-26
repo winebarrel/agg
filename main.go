@@ -13,21 +13,7 @@ func init() {
 	log.SetFlags(0)
 }
 
-func main() {
-	defer func() {
-		if err := recover(); err != nil {
-			log.Fatal(err)
-		}
-	}()
-
-	a := &agg.Agg{Out: os.Stdout}
-
-	err := agg.ParseFlag(a)
-
-	if err != nil {
-		log.Fatal(err)
-	}
-
+func scan(a *agg.Agg) {
 	scanner := bufio.NewScanner(os.Stdin)
 
 	for scanner.Scan() {
@@ -45,6 +31,14 @@ func main() {
 		}
 
 		ts := fields[0]
+
+		if a.TrimLen >= 1 {
+			tsLen := len(ts)
+
+			if tsLen-a.TrimLen >= 1 {
+				ts = ts[:(tsLen - a.TrimLen)]
+			}
+		}
 
 		if a.Type == agg.Count {
 			for _, v := range fields[1:] {
@@ -69,7 +63,25 @@ func main() {
 		a.PushNum("", 0)
 	}
 
-	if err = scanner.Err(); err != nil {
+	if err := scanner.Err(); err != nil {
 		log.Fatal(err)
 	}
+}
+
+func main() {
+	defer func() {
+		if err := recover(); err != nil {
+			log.Fatal(err)
+		}
+	}()
+
+	a := &agg.Agg{Out: os.Stdout}
+
+	err := agg.ParseFlag(a)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	scan(a)
 }

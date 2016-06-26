@@ -3,3 +3,7 @@
 *.gz
 *.zip
 *.log
+/debian/agg.debhelper.log
+/debian/agg.substvars
+/debian/agg/
+/debian/files

@@ -29,3 +29,6 @@ ifeq ($(GOOS),windows)
 else
 	gzip -c agg > agg-$(VERSION)-$(GOOS)-$(GOARCH).gz
 endif
+
+deb: dev_dep
+	dpkg-buildpackage -us -uc

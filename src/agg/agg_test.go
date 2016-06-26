@@ -1,7 +1,7 @@
 package agg
 
 import (
-	. "agg"
+	. "."
 	"bytes"
 	"github.com/stretchr/testify/assert"
 	"testing"
@@ -43,6 +43,27 @@ func TestSum(t *testing.T) {
 
 	expected := `12:10	6.000000
 12:11	9.000000
+`
+	actual := buf.String()
+
+	assert.Equal(expected, actual)
+}
+
+func TestSumWithBar(t *testing.T) {
+	assert := assert.New(t)
+	buf := &bytes.Buffer{}
+	a := &Agg{Type: Sum, Out: buf, BarLen: 10}
+
+	a.PushNum("12:10", 1)
+	a.PushNum("12:10", 2)
+	a.PushNum("12:10", 3)
+	a.PushNum("12:11", 2)
+	a.PushNum("12:11", 3)
+	a.PushNum("12:11", 4)
+	a.PushNum("12:12", 5)
+
+	expected := `12:10	6.000000	######
+12:11	9.000000	#########
 `
 	actual := buf.String()
 

@@ -8,6 +8,8 @@ Aggregate log records by time.
 
 ```
 Usage of agg:
+  -bar int
+      ASCII bar length
   -s int
       Trim timestamp suffix length
   -t string
@@ -51,4 +53,9 @@ $ awk '{print $1, $3}' access.log | agg -t min
 12:10 100.000000
 12:11 200.000000
 12:12 500.000000
+
+$ awk '{print $1, $3}' access.log | ./agg -t sum --bar 1000
+12:10 600.000000  ##############################
+12:11 900.000000  #############################################
+12:12 500.000000  #########################
 ```

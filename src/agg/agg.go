@@ -19,11 +19,16 @@ const (
 type Agg struct {
 	Type    AggregateType
 	TrimLen int
+	BarLen  int
 	Out     io.Writer
 	Curr    string
 	Counter map[string]int
 	NumList []float64
 }
+
+const (
+	BarWidth = 50
+)
 
 func (a *Agg) printCounter() {
 	keys := make([]string, 0, len(a.Counter))
@@ -59,65 +64,27 @@ func (a *Agg) PushStr(ts string, value string) {
 	}
 }
 
-func sum(nums []float64) float64 {
-	var total float64
-
-	for _, n := range nums {
-		total += n
-	}
-
-	return total
-}
-
-func avg(nums []float64) float64 {
-	var total float64
-
-	for _, n := range nums {
-		total += n
-	}
-
-	return total / float64(len(nums))
-}
-
-func max(nums []float64) float64 {
-	var maxVal float64
-
-	for _, n := range nums {
-		if n > maxVal {
-			maxVal = n
-		}
-	}
-
-	return maxVal
-}
-
-func min(nums []float64) float64 {
-	minVal := nums[0]
-
-	for _, n := range nums {
-		if n < minVal {
-			minVal = n
-		}
-	}
-
-	return minVal
-}
-
 func (a *Agg) printNum() {
 	var aggregated float64
 
 	switch a.Type {
 	case Sum:
-		aggregated = sum(a.NumList)
+		aggregated = AggregatSum(a.NumList)
 	case Avg:
-		aggregated = avg(a.NumList)
+		aggregated = AggregatAvg(a.NumList)
 	case Max:
-		aggregated = max(a.NumList)
+		aggregated = AggregatMax(a.NumList)
 	case Min:
-		aggregated = min(a.NumList)
+		aggregated = AggregatMin(a.NumList)
 	}
 
-	fmt.Fprintf(a.Out, "%s\t%f\n", a.Curr, aggregated)
+	fmt.Fprintf(a.Out, "%s\t%f", a.Curr, aggregated)
+
+	if a.BarLen > 0 {
+		fmt.Fprintf(a.Out, "\t%s", Bar(aggregated, BarWidth, a.BarLen))
+	}
+
+	fmt.Fprintln(a.Out)
 }
 
 func (a *Agg) PushNum(ts string, value float64) {

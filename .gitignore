@@ -1,5 +1,5 @@
-agg
-agg.exe
+/agg
+/agg.exe
 *.gz
 *.zip
 *.log

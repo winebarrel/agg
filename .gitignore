@@ -1,0 +1,5 @@
+agg
+agg.exe
+*.gz
+*.zip
+*.log

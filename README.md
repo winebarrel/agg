@@ -4,6 +4,12 @@ Aggregate log records by time.
 
 [![Build Status](https://travis-ci.org/winebarrel/agg.svg?branch=master)](https://travis-ci.org/winebarrel/agg)
 
+## Installation
+
+```
+brew install https://raw.githubusercontent.com/winebarrel/agg/master/homebrew/agg.rb
+```
+
 ## Usage
 
 ```

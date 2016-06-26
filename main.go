@@ -63,6 +63,12 @@ func main() {
 		}
 	}
 
+	if a.Type == agg.Count {
+		a.PushStr("", "")
+	} else {
+		a.PushNum("", 0)
+	}
+
 	if err = scanner.Err(); err != nil {
 		log.Fatal(err)
 	}

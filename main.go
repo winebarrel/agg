@@ -57,7 +57,7 @@ func scan(a *agg.Agg) {
 		}
 	}
 
-	if a.Type == agg.Count {
+	if a.Type == agg.Count || a.Type == agg.Countall {
 		a.PushStr("", "")
 	} else {
 		a.PushNum("", 0)

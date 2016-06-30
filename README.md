@@ -15,7 +15,7 @@ brew install https://raw.githubusercontent.com/winebarrel/agg/master/homebrew/ag
 ```
 Usage of agg:
   -bar int
-      ASCII bar length
+      ASCII bar length (min: 50)
   -s int
       Trim timestamp suffix length
   -t string
@@ -39,6 +39,11 @@ $ awk '{print $1, $2}' access.log | agg
 
 $ awk '{print $1, $2}' access.log | agg -s 1
 12:1  BAR:3 FOO:3 ZOO:1
+
+$ awk '{print $1, $2}' access.log | agg -t countall -bar 1
+12:10 3 ###
+12:11 3 ###
+12:12 1 #
 
 $ awk '{print $1, $3}' access.log | agg -t sum
 12:10 600.000000

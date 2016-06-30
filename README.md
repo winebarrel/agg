@@ -19,7 +19,7 @@ Usage of agg:
   -s int
       Trim timestamp suffix length
   -t string
-      count,sum,avg,max,min (default "count")
+      count,countall,sum,avg,max,min (default "count")
 ```
 
 ```

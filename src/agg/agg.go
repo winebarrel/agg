@@ -42,6 +42,10 @@ func (a *Agg) printCounter() {
 		}
 
 		fmt.Fprintf(a.Out, "\t%d", total)
+
+		if a.BarLen > 0 {
+			fmt.Fprintf(a.Out, "\t%s", Bar(float64(total), BarWidth, a.BarLen))
+		}
 	} else {
 		keys := make([]string, 0, len(a.Counter))
 

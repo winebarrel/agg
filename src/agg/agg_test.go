@@ -49,6 +49,27 @@ func TestCountall(t *testing.T) {
 	assert.Equal(expected, actual)
 }
 
+func TestCountallWithBar(t *testing.T) {
+	assert := assert.New(t)
+	buf := &bytes.Buffer{}
+	a := &Agg{Type: Countall, Out: buf, BarLen: 10}
+
+	a.PushStr("12:10", "FOO")
+	a.PushStr("12:10", "FOO")
+	a.PushStr("12:10", "BAR")
+	a.PushStr("12:11", "FOO")
+	a.PushStr("12:11", "BAR")
+	a.PushStr("12:11", "BAR")
+	a.PushStr("12:12", "ZOO")
+
+	expected := `12:10	3	###
+12:11	3	###
+`
+	actual := buf.String()
+
+	assert.Equal(expected, actual)
+}
+
 func TestSum(t *testing.T) {
 	assert := assert.New(t)
 	buf := &bytes.Buffer{}

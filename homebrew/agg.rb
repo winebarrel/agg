@@ -5,7 +5,7 @@ class Agg < Formula
 
   homepage 'https://github.com/winebarrel/agg'
   url "https://github.com/winebarrel/agg/releases/download/v#{VERSION}/agg-v#{VERSION}-darwin-amd64.gz"
-  sha256 '8bbcb9a78147dcd29f7eef748d7ab03a4cfbb60ae7d798768fe416251e2d5941'
+  sha256 'f28c5aefa9284c387b5d3868a9e004abd536340e63b5e0452939ac1bd803f1e9'
   version VERSION
   head 'https://github.com/winebarrel/agg.git', :branch => 'master'
 

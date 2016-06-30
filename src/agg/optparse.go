@@ -8,7 +8,7 @@ import (
 
 func ParseFlag(a *Agg) (err error) {
 	var t string
-	flag.StringVar(&t, "t", "count", "count,sum,avg,max,min")
+	flag.StringVar(&t, "t", "count", "count,countall,sum,avg,max,min")
 	flag.IntVar(&a.TrimLen, "s", 0, "Trim timestamp suffix length")
 	flag.IntVar(&a.BarLen, "bar", 0, "ASCII bar length")
 	flag.Parse()
@@ -24,6 +24,8 @@ func ParseFlag(a *Agg) (err error) {
 	switch strings.Title(t) {
 	case Count.String():
 		a.Type = Count
+	case Countall.String():
+		a.Type = Countall
 	case Sum.String():
 		a.Type = Sum
 	case Avg.String():

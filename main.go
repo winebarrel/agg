@@ -40,7 +40,7 @@ func scan(a *agg.Agg) {
 			}
 		}
 
-		if a.Type == agg.Count {
+		if a.Type == agg.Count || a.Type == agg.Countall {
 			for _, v := range fields[1:] {
 				a.PushStr(ts, v)
 			}

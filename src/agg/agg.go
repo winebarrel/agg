@@ -32,17 +32,28 @@ const (
 )
 
 func (a *Agg) printCounter() {
-	keys := make([]string, 0, len(a.Counter))
-
-	for k := range a.Counter {
-		keys = append(keys, k)
-	}
-
-	sort.Strings(keys)
 	fmt.Fprint(a.Out, a.Curr)
 
-	for _, k := range keys {
-		fmt.Fprintf(a.Out, "\t%s:%d", k, a.Counter[k])
+	if a.Type == Countall {
+		total := 0
+
+		for _, n := range a.Counter {
+			total += n
+		}
+
+		fmt.Fprintf(a.Out, "\t%d", total)
+	} else {
+		keys := make([]string, 0, len(a.Counter))
+
+		for k := range a.Counter {
+			keys = append(keys, k)
+		}
+
+		sort.Strings(keys)
+
+		for _, k := range keys {
+			fmt.Fprintf(a.Out, "\t%s:%d", k, a.Counter[k])
+		}
 	}
 
 	fmt.Fprintln(a.Out)

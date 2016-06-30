@@ -14,7 +14,7 @@ test: $(TEST_SRC)
 	GOPATH=$(RUNTIME_GOPATH) go test -v $(TEST_SRC)
 
 stringer:
-	cd src/agg && stringer -type AggregateType agg.go
+	cd src/agg && stringer -type AggregateType
 
 dev_dep:
 	go get github.com/stretchr/testify

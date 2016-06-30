@@ -10,6 +10,7 @@ type AggregateType int
 
 const (
 	Count AggregateType = iota
+	Countall
 	Sum
 	Avg
 	Max

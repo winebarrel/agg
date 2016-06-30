@@ -10,7 +10,7 @@ func ParseFlag(a *Agg) (err error) {
 	var t string
 	flag.StringVar(&t, "t", "count", "count,countall,sum,avg,max,min")
 	flag.IntVar(&a.TrimLen, "s", 0, "Trim timestamp suffix length")
-	flag.IntVar(&a.BarLen, "bar", 0, "ASCII bar length")
+	flag.IntVar(&a.BarLen, "bar", 0, "ASCII bar length (min: 50)")
 	flag.Parse()
 
 	if a.TrimLen < 0 {

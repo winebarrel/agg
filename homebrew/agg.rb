@@ -1,7 +1,7 @@
 require 'formula'
 
 class Agg < Formula
-  VERSION = '0.1.1'
+  VERSION = '0.1.2'
 
   homepage 'https://github.com/winebarrel/agg'
   url "https://github.com/winebarrel/agg/releases/download/v#{VERSION}/agg-v#{VERSION}-darwin-amd64.gz"
